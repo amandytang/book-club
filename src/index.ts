@@ -1,4 +1,3 @@
-
 import Hapi from '@hapi/hapi';
 import hapiPino from 'hapi-pino';
 
@@ -30,10 +29,46 @@ export default async function init({host, port}: Options): Promise<void> {
 
   server.route({
     method: 'get',
-    path: '/',
+    path: '/v1/reviews',
     handler: async (req, res) => {
       return {
-        message: 'Hello World',
+        message: 'All Reviews',
+      };
+    },
+  });
+  server.route({
+    method: 'get',
+    path: '/v1/reviews/{id}',
+    handler: async (req, res) => {
+      return {
+        message: 'Single Book Review',
+      };
+    },
+  });
+  server.route({
+    method: 'post',
+    path: '/v1/reviews',
+    handler: async (req, res) => {
+      return {
+        message: 'Return full Book Review',
+      };
+    },
+  });
+  server.route({
+    method: 'put',
+    path: '/v1/reviews/{id}',
+    handler: async (req, res) => {
+      return {
+        message: 'Accept partial and return full Book Review (result of updating)',
+      };
+    },
+  });
+  server.route({
+    method: 'delete',
+    path: '/v1/reviews/{id}',
+    handler: async (req, res) => {
+      return {
+        message: 'Accept id',
       };
     },
   });
