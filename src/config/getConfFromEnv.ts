@@ -1,6 +1,9 @@
 import Ajv, { Options } from 'ajv';
 import Config from './Config';
 
+/**
+ * Ajv is a helper library that validates your json schema
+ */
 const validationOptions: Options = {
   // insert defaults by value (object literal is used).
   //
@@ -29,10 +32,13 @@ const validationOptions: Options = {
   allErrors: true,
 };
 
+/**
+ * This is a schema for your environment variables - validates your variables on app start before they are passed to your config
+ */
 const ajv = new Ajv(validationOptions);
 const validate = ajv.compile({
   title: 'Env Schema',
-  $schema: 'http://json-schema.org/draft-07/schema#',
+  $schema: 'http://json-schema.org/draft-07/schema#', // check below schema against this parent schema (the json schema standard)
   type: 'object',
   required: ['APP_DB_HOST', 'APP_DB_USER', 'APP_DB_PASSWORD', 'APP_DB_NAME'],
   additionalProperties: true,
@@ -57,12 +63,17 @@ export class ConfigValidationError extends Error {
   }
 }
 
+/**
+ * getConfFromEnv accepts something that is maybe an environment
+ * (Partial means we're not sure what the type we're about to give you contains so make properties optional)
+ */
 export default function getConfFromEnv(maybeEnv: Partial<Env>): Config {
-  const valid = validate(maybeEnv);
+  const valid = validate(maybeEnv); // validate the maybe environment
   if (!valid && validate.errors && validate.errors.length > 0) {
     throw new ConfigValidationError(validate.errors);
   }
 
+  // now set maybe environment as environment because it is valid
   const env = maybeEnv as Env;
 
   return Object

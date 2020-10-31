@@ -2,12 +2,12 @@
 
 
 - [Typescript Project Starter](#typescript-project-starter)
-	- [Prerequisites](#prerequisites)
-	- [Building](#building)
-		- [Removing all build artifacts](#removing-all-build-artifacts)
-	- [Running the tests and linting](#running-the-tests-and-linting)
-	- [Running your project for local dev](#running-your-project-for-local-dev)
-	- [API](#api)
+  - [Prerequisites](#prerequisites)
+  - [Building](#building)
+    - [Removing all build artifacts](#removing-all-build-artifacts)
+  - [Running the tests and linting](#running-the-tests-and-linting)
+  - [Running your project for local dev](#running-your-project-for-local-dev)
+  - [API](#api)
 
 ## Prerequisites
 
