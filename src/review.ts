@@ -1,4 +1,4 @@
-export type Review = {
+export interface Review {
   bookTitle: string,
   isbn: string,
   contents: string,
