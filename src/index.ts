@@ -32,9 +32,9 @@ export default async function init({host, port}: Options): Promise<void> {
     method: 'get',
     path: '/v1/reviews',
     handler: async (req, h) => {
-      const review = await store.list();
+      const reviews = await store.list();
 
-      return { reviews: [review] };
+      return { reviews };
     },
   });
 
