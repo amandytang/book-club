@@ -3,6 +3,7 @@ import hapiPino from 'hapi-pino';
 
 import getConfFromEnv from './config/getConfFromEnv';
 import makeLog from './logging/makeLog';
+import { Review } from './review';
 
 export interface Options {
   host: string;
@@ -31,11 +32,17 @@ export default async function init({host, port}: Options): Promise<void> {
     method: 'get',
     path: '/v1/reviews',
     handler: async (req, res) => {
-      return {
-        message: 'All Reviews',
+      const review: Review = {
+        id: 1,
+        bookTitle: 'Hello World',
+        isbn: '978-3-16-148410-0',
+        contents: 'This is awesome',
       };
+
+      return { review };
     },
   });
+
   server.route({
     method: 'get',
     path: '/v1/reviews/{id}',
@@ -45,6 +52,7 @@ export default async function init({host, port}: Options): Promise<void> {
       };
     },
   });
+
   server.route({
     method: 'post',
     path: '/v1/reviews',
@@ -54,6 +62,7 @@ export default async function init({host, port}: Options): Promise<void> {
       };
     },
   });
+
   server.route({
     method: 'put',
     path: '/v1/reviews/{id}',
@@ -63,6 +72,7 @@ export default async function init({host, port}: Options): Promise<void> {
       };
     },
   });
+
   server.route({
     method: 'delete',
     path: '/v1/reviews/{id}',
