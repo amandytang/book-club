@@ -54,7 +54,7 @@ export default async function init({host, port}: Options): Promise<void> {
         contents: 'This is awesome',
       };
 
-      return { review, };
+      return { review };
     },
   });
 
@@ -62,9 +62,14 @@ export default async function init({host, port}: Options): Promise<void> {
     method: 'post',
     path: '/v1/reviews',
     handler: async (req, res) => {
-      return {
-        message: 'Return full Book Review',
+      const review: Review = {
+        id: 1,
+        bookTitle: 'Hello World',
+        isbn: '978-3-16-148410-0',
+        contents: 'This is awesome',
       };
+
+      return { review };
     },
   });
 
@@ -72,9 +77,15 @@ export default async function init({host, port}: Options): Promise<void> {
     method: 'put',
     path: '/v1/reviews/{id}',
     handler: async (req, res) => {
-      return {
-        message: 'Accept partial and return full Book Review (result of updating)',
+      // accept partial
+      const review: Review = {
+        id: 1,
+        bookTitle: 'Hello World',
+        isbn: '978-3-16-148410-0',
+        contents: 'This is awesome',
       };
+
+      return { review };
     },
   });
 
@@ -82,9 +93,7 @@ export default async function init({host, port}: Options): Promise<void> {
     method: 'delete',
     path: '/v1/reviews/{id}',
     handler: async (req, res) => {
-      return {
-        message: 'Accept id',
-      };
+      return {};
     },
   });
 
