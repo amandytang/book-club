@@ -39,7 +39,7 @@ export default async function init({host, port}: Options): Promise<void> {
         contents: 'This is awesome',
       };
 
-      return { review };
+      return { reviews: [review] };
     },
   });
 
@@ -47,9 +47,14 @@ export default async function init({host, port}: Options): Promise<void> {
     method: 'get',
     path: '/v1/reviews/{id}',
     handler: async (req, res) => {
-      return {
-        message: 'Single Book Review',
+      const review: Review = {
+        id: 1,
+        bookTitle: 'Hello World',
+        isbn: '978-3-16-148410-0',
+        contents: 'This is awesome',
       };
+
+      return { review, };
     },
   });
 
